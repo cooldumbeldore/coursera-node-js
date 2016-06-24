@@ -4,6 +4,7 @@
   "description": "",
   "main": "solve-1.js",
   "dependencies": {
+    "express": "^4.14.0",
     "nexe": "^1.1.2",
     "yargs": "^4.7.1"
   },
