@@ -1,0 +1,32 @@
+{
+  "name": "coursera-node-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "solve-1.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.1.18",
+    "morgan": "^1.7.0",
+    "nexe": "^1.1.2",
+    "session-file-store": "^0.2.0",
+    "yargs": "^4.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cooldumbeldore/coursera-node-js.git"
+  },
+  "author": "cooldumbeldore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cooldumbeldore/coursera-node-js/issues"
+  },
+  "homepage": "https://github.com/cooldumbeldore/coursera-node-js#readme"
+}
