@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var Dishes = require('./models/dishes')
+var Dishes = require('../models/dishes');
 
 
 var dishRouter = express.Router();
@@ -72,6 +72,9 @@ dishRouter.route('/:dishId/comments')
 
         Dishes.findById(req.params.dishId, function (err, dish) {
             if (err) throw err;
+
+            //TODO: BETTER?
+
             dish.comments.push(req.body);
             dish.save(function (err, dish) {
                 if (err) throw err;
@@ -87,11 +90,13 @@ dishRouter.route('/:dishId/comments')
         Dishes.findById(req.params.dishId, function (err, dish) {
             if (err) throw err;
 
-            for(var i = (dish.comments.length - 1); i >= 0; i --){
+            //TODO: BETTER?
+
+            for (var i = (dish.comments.length - 1); i >= 0; i--) {
                 dish.comments.id(dish.comments[i]._id).remove();
             }
 
-            dish.save(function(err, result){
+            dish.save(function (err, result) {
                 if (err) throw err;
 
                 res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -100,5 +105,48 @@ dishRouter.route('/:dishId/comments')
             });
         });
     });
+
+
+dishRouter.route('/:dishId/comments/:commentId')
+    .get(function (req, res, next) {
+        Dishes.findById(req.params.dishId, function (err, dish) {
+            if (err) throw err;
+            res.json(dish.comments.id(req.params.commentId));
+        });
+    })
+
+    .put(function (req, res, next) {
+
+        Dishes.findById(req.params.dishId, function (err, dish) {
+            if (err) throw err;
+
+            //TODO: BETTER?
+            dish.comments.id(req.params.commentId).remove();
+
+            dish.comments.push(req.body);
+
+            dish.save(function (err, dish) {
+                if (err) throw err;
+                console.log('Updated Comment!');
+
+                res.json(dish);
+            });
+        });
+    })
+
+    .delete(function (req, res, next) {
+        Dishes.findById(req.params.dishId, function (err, dish) {
+            if (err) throw err;
+            dish.comments.id(req.params.commentId).remove();
+
+
+            dish.save(function (err, resp) {
+                if (err) throw err;
+                res.json(resp);
+
+            });
+        });
+    });
+
 
 module.exports = dishRouter;
