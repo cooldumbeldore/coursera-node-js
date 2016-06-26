@@ -16,9 +16,9 @@ var commentSchema = new Schema({
             type: String,
             required: true
         },
-        author: {
-            type: String,
-            required: true
+        postedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         }
     },
     {
@@ -41,7 +41,17 @@ var dishSchema = new Schema({
         timestamps: true
     });
 
+/*
+dishSchema.post('create', function () {
+    console.log("after creation");
+});
+
+dishSchema.pre('create', function () {
+    console.log("before creation");
+});
+*/
 
 var Dishes = mongoose.model("Dish", dishSchema);
+
 
 module.exports = Dishes;
