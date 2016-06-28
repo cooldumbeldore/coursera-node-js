@@ -35,6 +35,10 @@ var dishSchema = new Schema({
             type: String,
             required: true
         },
+        featured:{
+            type:Boolean,
+            default: false
+        },
         comments: [commentSchema]
     },
     {
@@ -42,14 +46,14 @@ var dishSchema = new Schema({
     });
 
 /*
-dishSchema.post('create', function () {
-    console.log("after creation");
-});
+ dishSchema.post('create', function () {
+ console.log("after creation");
+ });
 
-dishSchema.pre('create', function () {
-    console.log("before creation");
-});
-*/
+ dishSchema.pre('create', function () {
+ console.log("before creation");
+ });
+ */
 
 var Dishes = mongoose.model("Dish", dishSchema);
 
